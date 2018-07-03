@@ -30,9 +30,9 @@ shinyServer(function(input, output) {
     
       output$status <- renderText("Processing Date")
       
-    main_script(input$gfp_file$datapath,input$total_file$datapath,
+    suppressWarnings( main_script(input$gfp_file$datapath,input$total_file$datapath,
                 input$map_file$datapath,input$path)
-      
+    )
       
       output$status <- renderText("Analysis Completed")
     }
