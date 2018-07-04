@@ -6,10 +6,18 @@
 #
 
 library(shiny)
-options(shiny.maxRequestSize=300*1024^2)
-shinyServer(function(input, output) {
 
+
+jscode <- "shinyjs.closeWindow = function() { window.close(); }"
+
+options(shiny.maxRequestSize=300*1024^2)
+shinyServer(function(input, output, session) {
+ 
+   session$onSessionEnded(function() {
+    stopApp()
+  })
   
+ 
   
   output$status <- renderText({ 
     

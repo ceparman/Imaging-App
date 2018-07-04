@@ -21,8 +21,10 @@ shinyUI(fluidPage(
       tags$h4("Cell Imaging Analysis"),
       tags$hr(),
       
+      textOutput("status"),
       
-       
+      tags$hr(),
+      
       fileInput("gfp_file", 'Choose GFP+ Data File',        #small File
                 accept=c('text/csv', 
                          'text/comma-separated-values,text/plain', 
@@ -40,14 +42,18 @@ shinyUI(fluidPage(
                                      '.csv','application/zip')),
     tags$hr(),
     
-    textInput("path", "Directory for Saved Data"),
+   # textInput("path", "Directory for Saved Data"),
     
-    textOutput("status"),
+   
     
     tags$hr(),
-      actionButton("run","Process Data")
+      actionButton("run","Process Data"),
     
-   #   actionButton("save", "Save Data")
+      actionButton("download", "Download Results"),
+   
+   
+   actionButton("close", "Close App")
+   
       
       
     ),
