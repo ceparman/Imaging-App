@@ -5,6 +5,7 @@ main_script <- function(gfp_file,total_file,plate_map_file,filePath)
 
 ### create directory if it does not exist
   
+filePath <- paste0(filePath,"/output")  
   
   if(!dir.exists(filePath)) dir.create(filePath)   
   

@@ -6,10 +6,18 @@
 #
 
 library(shiny)
-options(shiny.maxRequestSize=300*1024^2)
-shinyServer(function(input, output) {
 
+
+
+
+options(shiny.maxRequestSize=300*1024^2)
+shinyServer(function(input, output, session) {
+ 
+   session$onSessionEnded(function() {
+    stopApp()
+  })
   
+ 
   
   output$status <- renderText({ 
     
@@ -26,12 +34,14 @@ shinyServer(function(input, output) {
        
     } else {
     
+      
+    
     #process data
     
       output$status <- renderText("Processing Date")
       
     suppressWarnings( main_script(input$gfp_file$datapath,input$total_file$datapath,
-                input$map_file$datapath,input$path)
+                input$map_file$datapath,getwd())
     )
       
       output$status <- renderText("Analysis Completed")
@@ -40,10 +50,32 @@ shinyServer(function(input, output) {
       
     })
  
+  
+#### Download output  
+  
+ 
+    output$downloadData <- downloadHandler(
+      filename = function() {
+        paste0("Results-",Sys.time(),".zip")
+        
+      },
+      content = function(filename) {
+        zip(filename, "output/")
+      },
+      contentType = "application/zip"
+    )
     
-  
-  
+       
+   
+    
+    
   })
+  
+  
+  
+  
+  
+
     
     
 
