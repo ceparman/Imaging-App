@@ -49,10 +49,7 @@ shinyUI(fluidPage(
     tags$hr(),
       actionButton("run","Process Data"),
     
-      actionButton("download", "Download Results"),
-   
-   
-   actionButton("close", "Close App")
+     downloadButton("downloadData", "Download")
    
       
       
