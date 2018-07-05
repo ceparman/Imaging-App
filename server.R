@@ -60,8 +60,8 @@ shinyServer(function(input, output, session) {
      
       
        filename = function() {
-        paste0("Results-",Sys.time(),".zip")
-        
+      #  paste0("Results-",Sys.time(),".zip")
+         paste0("Results.zip")
       },
       content = function(filename) {
         zip::zip(filename, paste0(  setwd(path.expand("~")) , "/output/"))
