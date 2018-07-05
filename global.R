@@ -3,6 +3,7 @@ library(dplyr)
 library(tidyr)
 library(stringr)
 library(ggplot2)
+library(zip)
 
 source ("R_Code/barplot.R")
 source ("R_Code/make_plots.R")

@@ -40,6 +40,8 @@ shinyServer(function(input, output, session) {
     
       output$status <- renderText("Processing Date")
       
+    setwd(path.expand("~"))  
+      
     suppressWarnings( main_script(input$gfp_file$datapath,input$total_file$datapath,
                 input$map_file$datapath,getwd())
     )
@@ -55,12 +57,14 @@ shinyServer(function(input, output, session) {
   
  
     output$downloadData <- downloadHandler(
-      filename = function() {
+     
+      
+       filename = function() {
         paste0("Results-",Sys.time(),".zip")
         
       },
       content = function(filename) {
-        zip::zip(filename, "output/")
+        zip::zip(filename, paste0(  setwd(path.expand("~")) , "/output/"))
       },
       contentType = "application/zip"
     )
