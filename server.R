@@ -60,7 +60,7 @@ shinyServer(function(input, output, session) {
         
       },
       content = function(filename) {
-        zip(filename, "output/")
+        zip::zip(filename, "output/")
       },
       contentType = "application/zip"
     )
