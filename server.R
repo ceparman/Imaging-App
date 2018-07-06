@@ -65,7 +65,7 @@ shinyServer(function(input, output, session) {
       #  paste0("Results-",Sys.time(),".zip")
          paste0("Results.zip")
       },
-      content = function(filename) {
+      content = function(file) {
         
         file.copy(paste0(path.expand("~"),"/Results.zip") , file)
         
