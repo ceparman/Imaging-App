@@ -65,11 +65,10 @@ shinyServer(function(input, output, session) {
       },
       content = function(filename) {
         zip::zip(filename, paste0(  setwd(path.expand("~")) , "/output"),recurse = TRUE)
-        
+        file.copy(paste0(  setwd(path.expand("~")) , "/output/",filename) , file)
         
       }
-      #,
-      #contentType = "application/zip"
+      ,contentType = "application/zip"
     )
     
        
