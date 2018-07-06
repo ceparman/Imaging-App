@@ -67,7 +67,7 @@ shinyServer(function(input, output, session) {
       },
       content = function(filename) {
         
-        file.copy("Results.zip" , file)
+        file.copy(paste0(path.expand("~"),"/Results.zip") , file)
         
       }
       ,contentType = "application/zip"
