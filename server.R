@@ -46,7 +46,7 @@ shinyServer(function(input, output, session) {
                 input$map_file$datapath,getwd())
     )
       
-    zip::zip("results.zip", paste0(  setwd(path.expand("~")) , "/output"),recurse = TRUE)
+      zip::zip("results.zip", "output",recurse = TRUE)
     
       output$status <- renderText("Analysis Completed")
     }
@@ -60,14 +60,13 @@ shinyServer(function(input, output, session) {
  
     output$downloadData <- downloadHandler(
      
-      
        filename = function() {
-      #  paste0("Results-",Sys.time(),".zip")
-         paste0("Results.zip")
+      
+        paste0("Results.zip")
       },
       content = function(file) {
         
-        file.copy(paste0(path.expand("~"),"/results.zip") , file)
+        file.copy(from = "results.zip", to = file)
         
       }
       ,contentType = "application/zip"
