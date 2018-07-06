@@ -64,7 +64,9 @@ shinyServer(function(input, output, session) {
          paste0("Results.zip")
       },
       content = function(filename) {
-        zip::zip(filename, paste0(  setwd(path.expand("~")) , "/output/"))
+        zip::zip(filename, paste0(  setwd(path.expand("~")) , "/output"),recurse = TRUE)
+        
+        
       }
       #,
       #contentType = "application/zip"
