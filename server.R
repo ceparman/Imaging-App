@@ -62,7 +62,7 @@ shinyServer(function(input, output, session) {
      
        filename = function() {
       
-        paste0("Results.zip")
+        paste0("Results-",format(Sys.time(),"%Y-%m-%d--%H:%M"),".zip")
       },
       content = function(file) {
         
