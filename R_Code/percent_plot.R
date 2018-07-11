@@ -36,9 +36,11 @@ pp<- ggplot(compound_percent_data,aes(x=reorder(x_label,plotorder),y=as.numeric(
   theme_minimal()+
   theme(legend.position = "right",legend.title=element_blank()) +
   ggtitle(title) +
-  #scale_color_manual(values=c("green",rep("red",length(unique(compound_percent_data$compound))-1))) 
-  scale_color_manual(values=c("green",colors[1:length(unique(compound_percent_data$compound))-1]))
+   
+#  scale_color_manual(values=c("green",colors[1:length(unique(compound_percent_data$compound))-1]))
 
+
+ scale_color_manual(values=c("green",colors[1:length(unique(compound_percent_data$compound))]))
 pp
 
 
