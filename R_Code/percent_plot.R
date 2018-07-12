@@ -35,7 +35,7 @@ pp<- ggplot(compound_percent_data,aes(x=reorder(x_label,plotorder),y=as.numeric(
   labs(y= "% GFP(+) Cell Area", x="Concentration") +
   theme_minimal()+
   theme(legend.position = "right",legend.title=element_blank()) +
-  ggtitle(title) + expand_limits(y = 0)+
+  ggtitle(title) #expand_limits(y = 0)+
    
 #  scale_color_manual(values=c("green",colors[1:length(unique(compound_percent_data$compound))-1]))
 
