@@ -14,6 +14,7 @@ options(shiny.maxRequestSize=300*1024^2)
 shinyServer(function(input, output, session) {
  
    session$onSessionEnded(function() {
+     unlink("ImageAppoutput",recursive = TRUE)
     stopApp()
   })
   
@@ -46,7 +47,7 @@ shinyServer(function(input, output, session) {
                 input$map_file$datapath,getwd())
     )
       
-      zip::zip("results.zip", "output",recurse = TRUE)
+      zip::zip("results.zip","ImageAppoutput",recurse = TRUE)
     
       output$status <- renderText("Analysis Completed")
     }
