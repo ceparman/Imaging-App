@@ -30,7 +30,7 @@ bar_data <- bind_rows(gfp_data,all_data)
 bar_data <-  bar_data %>% mutate( x_label = ifelse( is.na(units), concentration, paste(concentration,units) ))
 
 suppressWarnings(
-  bar_data <-  bar_data %>% mutate(plotorder = ifelse(is.na(control), (as.numeric(concentration,rm.na=TRUE)*100), as.numeric(control,rm.na=TRUE))) 
+  bar_data <-  bar_data %>% mutate(plotorder = ifelse(is.na(control), (as.numeric(concentration,rm.na=TRUE)*100 +10), as.numeric(control,rm.na=TRUE))) 
 )
 
 
