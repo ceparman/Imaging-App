@@ -9,10 +9,24 @@ filePath <- paste0(filePath,"/ImageAppoutput")
   
   if(!dir.exists(filePath)) dir.create(filePath)   
   
+
   
 plate <- makePlate()
 
-plate_map <- parse_plate_map2(plate_map_file )
+#plate_map <- parse_plate_map2(plate_map_file )
+library(CoreAPIV2)
+
+
+
+api <- CoreAPIV2::coreAPI("/home/craig/Frequency Apps/Imaging-App2/Credentialsfreq.txt")
+
+creds<- CoreAPIV2::authBasic(api)$coreApi 
+
+barcode <- "WCP31"
+
+
+plate_map <-getContainerContents2(creds, barcode, useVerbose = FALSE)
+
 
 data1 <- processReaderFile(gfp_file,plate) 
 data2 <- processReaderFile(total_file,plate) 
