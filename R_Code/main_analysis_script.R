@@ -16,7 +16,7 @@ plate <- makePlate()
 plate_map <- parse_plate_map2(plate_map_file )
 
 
-plate_map <-getContainerContents2(creds, barcode, useVerbose = FALSE)
+
 
 
 data1 <- processReaderFile(gfp_file,plate) 
