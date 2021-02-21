@@ -8,7 +8,7 @@
 library(shiny)
 
 shinyUI(fluidPage(
-
+  useShinyjs(),
   # Application title
   titlePanel(title=div(img(src="logo-frequency-therapeutics.png"))
              ,windowTitle = "Application Name"),
@@ -47,9 +47,10 @@ shinyUI(fluidPage(
    
     
     tags$hr(),
-      actionButton("run","Process Data"),
+   
+     disabled( actionButton("run","Process Data") ),
     
-     downloadButton("downloadData", "Download")
+     disabled(downloadButton("downloadData", "Download"))
    
       
       

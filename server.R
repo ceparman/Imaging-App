@@ -35,6 +35,7 @@ shinyServer(function(input, output, session) {
        
     } else {
     
+    
       
     
     #process data
@@ -43,13 +44,19 @@ shinyServer(function(input, output, session) {
       
     setwd(path.expand("~"))  
       
-    suppressWarnings( main_script(input$gfp_file$datapath,input$total_file$datapath,
+    suppressWarnings( 
+       withProgress(message = "Processing Data",value = 0,{
+                       main_script(input$gfp_file$datapath,input$total_file$datapath,
                 input$map_file$datapath,getwd())
+       }
+       )
     )
       
       zip::zip("results.zip","ImageAppoutput",recurse = TRUE)
     
       output$status <- renderText("Analysis Completed")
+      
+      enable("downloadData")
     }
       
       
@@ -74,6 +81,25 @@ shinyServer(function(input, output, session) {
     )
     
        
+    
+#observe file inputs
+    
+ file_exists <- reactive({ 
+          list(input$gfp_file, input$total_file, input$map_file) 
+ 
+            })
+   
+   
+  observeEvent( file_exists(), { 
+   
+   
+   if (!( is.null(input$gfp_file)  | is.null(input$total_file) |  is.null(input$map_file) ) ){
+    
+     enable("run")
+  
+    }
+   
+   })   
    
     
     
